@@ -6,12 +6,13 @@ width: 100%;
 .navbar-brand {
 color: white !important;
 }
-strong {
-font-family: "Celias";
-}
-
-.list-inline-item strong {
+.list-inline-item {
   color: #000000;
+  font-family: "Celias";
+  font-weight: bold;
+}
+.list-inline-item:hover {
+  opacity: 0.5;
 }
 </style>
 <div class="profile-container">
@@ -25,7 +26,7 @@ font-family: "Celias";
           <% Task.where(worker_user_id: @user, status: "accepted").each do |task| %>
           <%= link_to task_path(task) do %>
           <li class="list-inline-item">
-            <strong><%=task.name.capitalize%></strong> for <%= humanized_money_with_symbol(task.price) %>
+            <%=task.name.capitalize%> for <%= humanized_money_with_symbol(task.price) %>
           </li>
           <% end %>
           <% end %>
@@ -37,7 +38,7 @@ font-family: "Celias";
           <% Task.where(worker_user_id: @user, status: "confirmed").each do |task| %>
           <%= link_to task_path(task) do %>
           <li class="list-inline-item">
-            <strong><%=task.name.capitalize%></strong> for <%= humanized_money_with_symbol(task.price) %>
+            <%=task.name.capitalize%> for <%= humanized_money_with_symbol(task.price) %>
           </li>
           <% end %>
           <% end %>
@@ -48,8 +49,8 @@ font-family: "Celias";
         <ul class="list-inline">
           <% Task.where(worker_user_id: @user, status: "finished").each do |task| %>
           <%= link_to task_path(task) do %>
-          <li class="list-inline-item">
-            <strong><%=task.name.capitalize%></strong> for <%= humanized_money_with_symbol(task.price) %>
+          <li class="list-inline-item" style="color:grey;">
+            <%=task.name.capitalize%> for <%= humanized_money_with_symbol(task.price) %>
           </li>
           <% end %>
           <% end %>
