@@ -19,7 +19,7 @@ strong {
 
     <div class="top-title-profile">
       <% rating = current_user.average_rating_received %>
-      <% rating.nan? ? rating_per_cent = 0 : rating_per_cent = (100 * rating / 5).round(2) %>
+      <% rating.nan? ? rating_per_cent = 0 : rating_per_cent = (100 * rating / 5).round %>
 
       <% if current_user.avatar.present? %>
         <%= cl_image_tag current_user.avatar, height: 150, width: 150, crop: :fill %>
