@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @tasks = filter_tasks
@@ -119,7 +119,7 @@ class TasksController < ApplicationController
 
     # UNCOMMENT WHEN MORE SEEDS! --> NOT ENOUGH TASKS FOR TESTING RADIUS
     if params[:radius].present? && params[:radius] != "All"
-      tasks = tasks.near([current_user.latitude, current_user.longitude], params[:radius].to_i)
+      tasks = tasks.near([current_user.latitude, current_user.longitude], params[:radius].to_i) if current_user.present?
     end
     return tasks
   end
